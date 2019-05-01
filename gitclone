@@ -1,0 +1,12 @@
+START_PATH=$PWD
+diskutil erasevolume HFS+ 'gitdisk' `hdiutil attach -nomount ram://4194304`;
+cd /Volumes/gitdisk/;
+MOUNTED_DEVICE=`df /Volumes/gitdisk/ | grep -vE "^Filesystem|shm|boot" | awk '{print $1}'`
+git clone "$1"
+# ./gradlew idea
+cd *
+PROJECT_PATH=$PWD
+"/Users/ruslanmikhalev/Applications/JetBrains Toolbox/IntelliJ IDEA Ultimate.app/Contents/MacOS/jetbrains-toolbox-launcher"
+read
+cd $START_PATH
+hdiutil detach "$MOUNTED_DEVICE"
