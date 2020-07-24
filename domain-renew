@@ -1,0 +1,1 @@
+certbot -d *.chest.one --manual --preferred-challenges dns certonly
